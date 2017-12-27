@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Baking App</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ingredients">ingredients</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="quanitiy">Quanitiy:</string>
+    <string name="ingredient">Ingredient:</string>
+    <string name="measure">Measure:</string>
+    <string name="previous_step">previous step</string>
+    <string name="next_step">next step</string>
+    <string name="refresh_data">Refresh Data</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="no_recipes_yet">No Recipes yet</string>
+    <string name="show_in_widget">Show in widget</string>
+</resources>
