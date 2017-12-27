@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Fragments;
 
 
 import android.content.Context;
@@ -29,6 +29,7 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.ntl.udacity.bakingapp.Models.Step;
+import com.ntl.udacity.bakingapp.R;
 
 public class StepDetailFragment extends Fragment
 {

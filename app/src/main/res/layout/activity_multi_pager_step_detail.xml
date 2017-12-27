@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ntl.udacity.bakingapp.MultiPagerStepDetail">
+    tools:context="com.ntl.udacity.bakingapp.Activities.MultiPagerStepDetailActivity">
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/steps_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/steps_view_pager"/>
+        android:layout_height="match_parent" />
     <RelativeLayout
+        android:id="@+id/navigation_buttons_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_bot_bar"
-        android:layout_margin="4dp"
-        android:padding="4dp"
         android:layout_alignParentBottom="true"
-        android:id="@+id/navigation_buttons_steps"
+        android:layout_margin="4dp"
+        android:background="@drawable/shape_bot_bar"
+        android:padding="4dp"
         >
         <Button
             android:id="@+id/previous_step_btn"

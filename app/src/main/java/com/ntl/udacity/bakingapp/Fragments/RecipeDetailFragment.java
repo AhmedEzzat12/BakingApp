@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Fragments;
 
 
 import android.content.Context;
@@ -14,9 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.ntl.udacity.bakingapp.Activities.MainActivity;
+import com.ntl.udacity.bakingapp.Adapters.CardsAdapter;
+import com.ntl.udacity.bakingapp.Adapters.stepsAdapter;
+import com.ntl.udacity.bakingapp.Interfaces.transferDataInterface;
 import com.ntl.udacity.bakingapp.Models.IngredientItem;
 import com.ntl.udacity.bakingapp.Models.Recipe;
 import com.ntl.udacity.bakingapp.Models.Step;
+import com.ntl.udacity.bakingapp.R;
+import com.ntl.udacity.bakingapp.Widget.IngredientsWidgetService;
 
 import java.util.ArrayList;
 

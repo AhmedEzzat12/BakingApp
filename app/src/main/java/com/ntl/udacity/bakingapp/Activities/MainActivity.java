@@ -1,11 +1,14 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
+import com.ntl.udacity.bakingapp.Fragments.MainFragment;
+import com.ntl.udacity.bakingapp.Interfaces.transferDataInterface;
 import com.ntl.udacity.bakingapp.Models.IngredientItem;
+import com.ntl.udacity.bakingapp.R;
 
 import java.util.List;
 

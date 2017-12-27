@@ -5,7 +5,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="6dp"
-    tools:context="com.ntl.udacity.bakingapp.StepDetailFragment">
+    tools:context="com.ntl.udacity.bakingapp.Fragments.StepDetailFragment">
 
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/step_detail_video"

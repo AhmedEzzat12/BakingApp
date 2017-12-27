@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,16 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.ntl.udacity.bakingapp.Models.IngredientItem;
-import com.ntl.udacity.bakingapp.Models.Step;
+import com.ntl.udacity.bakingapp.R;
 
 import java.util.List;
 
 
-class ingredientsAdapter extends ArrayAdapter<IngredientItem>
+public class ingredientsAdapter extends ArrayAdapter<IngredientItem>
 {
 
     public ingredientsAdapter(@NonNull Context context, @NonNull List<IngredientItem> objects)

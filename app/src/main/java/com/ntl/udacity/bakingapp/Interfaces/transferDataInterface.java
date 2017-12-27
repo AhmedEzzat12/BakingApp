@@ -1,9 +1,8 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Interfaces;
 
 import android.os.Parcelable;
 
 import com.ntl.udacity.bakingapp.Models.IngredientItem;
-import com.ntl.udacity.bakingapp.Models.Step;
 
 import java.util.List;
 

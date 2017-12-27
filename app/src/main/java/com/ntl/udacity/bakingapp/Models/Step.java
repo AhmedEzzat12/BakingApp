@@ -5,21 +5,6 @@ import android.os.Parcelable;
 
 public class Step implements Parcelable
 {
-    private String id;
-    private String shortDescription;
-    private String description;
-    private String videoURL;
-    private String thumbnailURL;
-
-    public Step(Parcel in)
-    {
-        id = in.readString();
-        shortDescription = in.readString();
-        description = in.readString();
-        videoURL = in.readString();
-        thumbnailURL = in.readString();
-    }
-
     public static final Creator<Step> CREATOR = new Creator<Step>()
     {
         @Override
@@ -34,6 +19,20 @@ public class Step implements Parcelable
             return new Step[size];
         }
     };
+    private String id;
+    private String shortDescription;
+    private String description;
+    private String videoURL;
+    private String thumbnailURL;
+
+    public Step(Parcel in)
+    {
+        id = in.readString();
+        shortDescription = in.readString();
+        description = in.readString();
+        videoURL = in.readString();
+        thumbnailURL = in.readString();
+    }
 
     @Override
     public int describeContents()

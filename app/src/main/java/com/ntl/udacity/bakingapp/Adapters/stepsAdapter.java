@@ -1,8 +1,7 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +12,15 @@ import com.ntl.udacity.bakingapp.Models.Step;
 
 import java.util.List;
 
-import static com.ntl.udacity.bakingapp.CardsAdapter.*;
-
 
 public class stepsAdapter extends ArrayAdapter<Step>
 {
-    private int position;
-    private MOnItemListener mOnItemListener;
     private static final String TAG=stepsAdapter.class.getSimpleName();
+    private int position;
+    private CardsAdapter.MOnItemListener mOnItemListener;
     private Step step;
 
-    public stepsAdapter(@NonNull Context context, @NonNull List<Step> objects,MOnItemListener  mOnItemListener)
+    public stepsAdapter(@NonNull Context context, @NonNull List<Step> objects, CardsAdapter.MOnItemListener mOnItemListener)
     {
         super(context,0, objects);
         this.mOnItemListener=mOnItemListener;

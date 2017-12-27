@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Widget;
 
 
 import android.content.Context;
@@ -7,19 +7,18 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.ntl.udacity.bakingapp.Models.IngredientItem;
-
-import java.util.List;
-
-import static com.ntl.udacity.bakingapp.IngredientsWidgetService.EXTRA_RECIPES;
+import com.ntl.udacity.bakingapp.R;
 
 
 public class ListWidgetService extends RemoteViewsService
 {
 
+    private static final String TAG = ListWidgetService.class.getSimpleName();
+
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent)
     {
+        Log.d(TAG, "onGetViewFactory called");
         return new ListRemoteViewsFactory(this.getApplicationContext(),intent);
     }
 }
@@ -27,21 +26,30 @@ public class ListWidgetService extends RemoteViewsService
     {
 
         private static final String TAG = ListRemoteViewsFactory.class.getSimpleName();
-        private List<IngredientItem> ingredientItems;
+        private String[] quantity;
+        private String[] measure;
+        private String[] ingredient;
         private Context context;
-
+        private Intent intent;
         public ListRemoteViewsFactory(Context context, Intent intent)
         {
-            this.ingredientItems= intent.getParcelableArrayListExtra(EXTRA_RECIPES);
+            this.intent = intent;
             this.context = context;
-            Log.d(TAG, String.valueOf(ingredientItems.size()));
-
         }
 
         @Override
         public void onCreate()
         {
+            getDataFromIntent();
+        }
 
+        private void getDataFromIntent()
+        {
+
+            this.quantity = intent.getStringArrayExtra(RecipesWidget.QUANTITY);
+            this.measure = intent.getStringArrayExtra(RecipesWidget.MEASURE);
+            this.ingredient = intent.getStringArrayExtra(RecipesWidget.INGREDIENT);
+            Log.d(TAG, String.valueOf(quantity.length));
         }
 
         @Override
@@ -59,19 +67,19 @@ public class ListWidgetService extends RemoteViewsService
         @Override
         public int getCount()
         {
-            if(ingredientItems==null)
+            if (quantity == null)
                 return 0;
-            return ingredientItems.size();
+            return quantity.length;
         }
 
         @Override
         public RemoteViews getViewAt(int position)
         {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ingredient_item);
-            views.setTextViewText(R.id.quanitiy_tv,ingredientItems.get(position).getQuantity());
-            views.setTextViewText(R.id.measure_tv,ingredientItems.get(position).getMeasure());
-            views.setTextViewText(R.id.ingredient_tv,ingredientItems.get(position).getIngredient());
-            Log.d(TAG+" getViewAt ", ingredientItems.get(position).getQuantity());
+            views.setTextViewText(R.id.quanitiy_tv, quantity[position]);
+            views.setTextViewText(R.id.measure_tv, measure[position]);
+            views.setTextViewText(R.id.ingredient_tv, ingredient[position]);
+            Log.d(TAG + " getViewAt ", quantity[position]);
             return views;
         }
 

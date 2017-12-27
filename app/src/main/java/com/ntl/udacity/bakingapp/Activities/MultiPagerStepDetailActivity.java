@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -7,10 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.ntl.udacity.bakingapp.Adapters.MultiPagerStepDetailAdapter;
 import com.ntl.udacity.bakingapp.Models.Recipe;
-import com.ntl.udacity.bakingapp.Models.Step;
+import com.ntl.udacity.bakingapp.R;
 
-public class MultiPagerStepDetail extends AppCompatActivity
+public class MultiPagerStepDetailActivity extends AppCompatActivity
 {
 
     private Recipe recipe;

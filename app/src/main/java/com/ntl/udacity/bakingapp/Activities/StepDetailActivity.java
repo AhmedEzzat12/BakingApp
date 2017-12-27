@@ -1,9 +1,11 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ntl.udacity.bakingapp.Fragments.StepDetailFragment;
 import com.ntl.udacity.bakingapp.Models.Step;
+import com.ntl.udacity.bakingapp.R;
 
 public class StepDetailActivity extends AppCompatActivity
 {

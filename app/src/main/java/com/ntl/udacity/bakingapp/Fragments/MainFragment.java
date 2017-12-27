@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -28,7 +28,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.ntl.udacity.bakingapp.Adapters.CardsAdapter;
+import com.ntl.udacity.bakingapp.IdlingResourceTest;
+import com.ntl.udacity.bakingapp.Interfaces.transferDataInterface;
 import com.ntl.udacity.bakingapp.Models.Recipe;
+import com.ntl.udacity.bakingapp.R;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

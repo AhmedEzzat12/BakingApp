@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ntl.udacity.bakingapp.Models.Recipe;
+import com.ntl.udacity.bakingapp.R;
 
 import java.util.List;
 
@@ -32,10 +33,6 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder>
     {
         this.recipes=recipes;
         notifyDataSetChanged();
-    }
-    public interface MOnItemListener
-    {
-        void onListItemClick(int position);
     }
 
     @Override
@@ -66,6 +63,11 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ViewHolder>
             return recipes.size();
         }
         return 0;
+    }
+
+    public interface MOnItemListener
+    {
+        void onListItemClick(int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener

@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Fragments;
 
 
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.ntl.udacity.bakingapp.Adapters.ingredientsAdapter;
 import com.ntl.udacity.bakingapp.Models.IngredientItem;
+import com.ntl.udacity.bakingapp.R;
 
 import java.util.List;
 
@@ -18,6 +20,13 @@ import java.util.List;
 public class IngredientsDetailFragment extends Fragment
 {
     private List<IngredientItem> ingredients;
+
+    public static IngredientsDetailFragment getIngredientsDetailFragmentInstance(List<IngredientItem> ingredients)
+    {
+        IngredientsDetailFragment ingredientsDetailFragment = new IngredientsDetailFragment();
+        ingredientsDetailFragment.setIngredients(ingredients);
+        return ingredientsDetailFragment;
+    }
 
     public void setIngredients(List<IngredientItem> ingredients)
     {
@@ -39,12 +48,5 @@ public class IngredientsDetailFragment extends Fragment
         ListView listView= view.findViewById(R.id.ingredients_lv);
         listView.setAdapter(new ingredientsAdapter(container.getContext(),ingredients));
         return view ;
-    }
-
-    public static IngredientsDetailFragment getIngredientsDetailFragmentInstance(List<IngredientItem> ingredients)
-    {
-        IngredientsDetailFragment ingredientsDetailFragment= new IngredientsDetailFragment();
-        ingredientsDetailFragment.setIngredients(ingredients);
-        return ingredientsDetailFragment;
     }
 }

@@ -1,9 +1,10 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.ntl.udacity.bakingapp.Fragments.StepDetailFragment;
 import com.ntl.udacity.bakingapp.Models.Recipe;
 
 
@@ -11,14 +12,14 @@ public class MultiPagerStepDetailAdapter extends FragmentPagerAdapter
 {
     private Recipe recipe;
 
-    public void setRecipe(Recipe recipe)
-    {
-        this.recipe = recipe;
-    }
-
     public MultiPagerStepDetailAdapter(FragmentManager fm)
     {
         super(fm);
+    }
+
+    public void setRecipe(Recipe recipe)
+    {
+        this.recipe = recipe;
     }
 
     @Override

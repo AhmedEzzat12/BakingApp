@@ -1,4 +1,4 @@
-package com.ntl.udacity.bakingapp;
+package com.ntl.udacity.bakingapp.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,14 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.ntl.udacity.bakingapp.Fragments.IngredientsDetailFragment;
+import com.ntl.udacity.bakingapp.Fragments.RecipeDetailFragment;
+import com.ntl.udacity.bakingapp.Fragments.StepDetailFragment;
+import com.ntl.udacity.bakingapp.Interfaces.transferDataInterface;
 import com.ntl.udacity.bakingapp.Models.IngredientItem;
 import com.ntl.udacity.bakingapp.Models.Recipe;
 import com.ntl.udacity.bakingapp.Models.Step;
+import com.ntl.udacity.bakingapp.R;
 
 import java.util.List;
 
@@ -53,7 +58,7 @@ public class RecipDetaileActivity extends AppCompatActivity implements transferD
                     , StepDetailFragment.getStepDetailFragmentInstance(stepObj)).commit();
         } else
         {
-            Intent intent = new Intent(RecipDetaileActivity.this, MultiPagerStepDetail.class);
+            Intent intent = new Intent(RecipDetaileActivity.this, MultiPagerStepDetailActivity.class);
             intent.putExtra(MainActivity.RECIPE_KEY, recipe);
             intent.putExtra(STEP_POSITION, position);
             startActivity(intent);
