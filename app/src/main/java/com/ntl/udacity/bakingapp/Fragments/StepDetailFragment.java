@@ -10,12 +10,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -35,7 +37,6 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.ntl.udacity.bakingapp.Models.Step;
 import com.ntl.udacity.bakingapp.R;
-import com.squareup.picasso.Picasso;
 
 public class StepDetailFragment extends Fragment implements Player.EventListener
 {
@@ -69,7 +70,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
-        setRetainInstance(true);
         if (savedInstanceState != null)
         {
             position = savedInstanceState.getLong(PLAYER_POSITION);
@@ -112,7 +112,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             ImageView imageView = view.findViewById(R.id.step_thumbnail);
             try
             {
-                Picasso.with(inflater.getContext()).load(step.getThumbnailURL()).into(imageView);
+                Glide.with(inflater.getContext()).load(step.getThumbnailURL()).into(imageView);
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -128,7 +128,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     public void onResume()
     {
         super.onResume();
-        if (videoURL != null)
+        if (!TextUtils.isEmpty(videoURL))
             InitializeVideoPlayer(videoURL);
     }
 

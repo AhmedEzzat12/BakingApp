@@ -18,9 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.RecipDetaileActivity" />
-        <activity android:name=".Activities.StepDetailActivity" />
-        <activity android:name=".Activities.MultiPagerStepDetailActivity" />
+        <activity
+            android:name=".Activities.RecipDetaileActivity"
+            android:parentActivityName=".Activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainActivity" />
+
+        </activity>
+
+        <activity
+            android:name=".Activities.MultiPagerStepDetailActivity"
+            android:parentActivityName=".Activities.RecipDetaileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.RecipDetaileActivity" />
+        </activity>
 
         <receiver android:name=".Widget.RecipesWidget">
             <intent-filter>
@@ -35,6 +48,14 @@
         <service
             android:name=".Widget.ListWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity
+            android:name=".Activities.IngredientsActivity"
+            android:parentActivityName=".Activities.RecipDetaileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.RecipDetaileActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.ntl.udacity.bakingapp.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -43,11 +45,18 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
 {
     private static final String TAG = MainFragment.class.getSimpleName();
     private static final String RECIPES_KEY = "recipes";
+    private static final String POSITION_KEY = "position_key";
     private CardsAdapter cardsAdapter;
     private List<Recipe> recipeList;
     private Context context;
     private transferDataInterface anInterface;
     private IdlingResourceTest idlingResourceTest;
+    private Parcelable layoutManagerState;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private int scrollPosition;
+    private boolean isTablet;
+    private TextView emptyView;
 
     public void setAnInterface(transferDataInterface anInterface)
     {
@@ -59,7 +68,11 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
     {
         setHasOptionsMenu(true);
         if (savedInstanceState != null)
-            recipeList = savedInstanceState.getParcelableArrayList(RECIPES_KEY);
+        {
+            scrollPosition = savedInstanceState.getInt(POSITION_KEY);
+            Log.d(TAG + "restored", String.valueOf(scrollPosition));
+
+        }
         super.onCreate(savedInstanceState);
     }
 
@@ -73,29 +86,44 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState)
     {
-        outState.putParcelableArrayList(RECIPES_KEY, (ArrayList<Recipe>) recipeList);
+        outState.putInt(POSITION_KEY, scrollPosition);
         super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    public void onStop()
+    {
+        if (!isTablet)
+            scrollPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+        Log.d(TAG, String.valueOf(scrollPosition));
+        super.onStop();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         cardsAdapter = new CardsAdapter(recipeList, this, inflater.getContext());
-
-        RecyclerView recyclerView = v.findViewById(R.id.main_recyclerview);
+        emptyView = v.findViewById(R.id.main_empty_view);
+        recyclerView = v.findViewById(R.id.main_recyclerview);
         recyclerView.setHasFixedSize(true);
-        if (getResources().getBoolean(R.bool.isTablet))
+        isTablet = getResources().getBoolean(R.bool.isTablet);
+        if (isTablet)
         {
-            recyclerView.setLayoutManager(new GridLayoutManager(inflater.getContext(), 3));
+            layoutManager = new GridLayoutManager(inflater.getContext(), 3);
+            recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(cardsAdapter);
 
         } else
         {
-            recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext(), LinearLayoutManager.VERTICAL, false));
+            layoutManager = new LinearLayoutManager(inflater.getContext(), LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(cardsAdapter);
         }
+        recyclerView.scrollToPosition(scrollPosition);
         return v;
     }
 
@@ -109,6 +137,7 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
             public void onResponse(String response)
             {
                 Log.d(TAG, response);
+                emptyView.setVisibility(View.GONE);
                 parseResponse(response);
 
                 if (idlingResourceTest != null)
@@ -191,4 +220,5 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
         }
 
     }
+
 }

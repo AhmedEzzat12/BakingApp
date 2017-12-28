@@ -14,23 +14,33 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements transferDataInterface
 {
-    public static final String RECIPE_KEY="recipe";
+    public static final String RECIPE_KEY = "recipe";
+    private static final String MAIN_FRAGMENT_TAG = "main_tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MainFragment mainFragment = new MainFragment();
-        mainFragment.setAnInterface(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, mainFragment).commit();
+        android.support.v4.app.Fragment fragment = getSupportFragmentManager().findFragmentByTag(MAIN_FRAGMENT_TAG);
+        if (fragment == null)
+        {
+            MainFragment mainFragment = new MainFragment();
+            mainFragment.setAnInterface(this);
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_container, mainFragment, MAIN_FRAGMENT_TAG).commit();
+        } else
+        {
+            ((MainFragment) fragment).setAnInterface(this);
+            getSupportFragmentManager().beginTransaction().show(fragment).commit();
+        }
+
     }
 
     @Override
     public void transform(Parcelable recipe, int position)
     {
-        Intent intent=new Intent(this,RecipDetaileActivity.class);
-        intent.putExtra(RECIPE_KEY,recipe);
+        Intent intent = new Intent(this, RecipDetaileActivity.class);
+        intent.putExtra(RECIPE_KEY, recipe);
         startActivity(intent);
     }
 
@@ -39,4 +49,6 @@ public class MainActivity extends AppCompatActivity implements transferDataInter
     {
 
     }
+
+
 }
