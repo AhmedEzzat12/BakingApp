@@ -36,20 +36,17 @@ public class RecipDetaileActivity extends AppCompatActivity implements transferD
 
         RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
         recipeDetailFragment.setAnInterface(this);
-        if (twoPane)
-        {
-            getSupportFragmentManager().beginTransaction().replace(R.id.master_recipe_container, recipeDetailFragment).commit();
-        } else
-        {
-            getSupportFragmentManager().beginTransaction().replace(R.id.recipe_detail_container, recipeDetailFragment).commit();
-        }
+
+        int commitId = (twoPane) ? getSupportFragmentManager().beginTransaction().replace(R.id.master_recipe_container, recipeDetailFragment).commit() :
+                getSupportFragmentManager().beginTransaction().replace(R.id.recipe_detail_container, recipeDetailFragment).commit();
+
 
     }
 
     @Override
     public void transform(Parcelable step, int position)
     {
-        // TODO handle tablet
+
         Step stepObj = (Step) step;
         if (twoPane)
         {
@@ -68,17 +65,10 @@ public class RecipDetaileActivity extends AppCompatActivity implements transferD
     @Override
     public void transform(List<IngredientItem> ingredients)
     {
-        // TODO handle tablet
-        if (twoPane)
-        {
-            getSupportFragmentManager().beginTransaction().replace(R.id.detail_recipe_container
-                    , IngredientsDetailFragment.getIngredientsDetailFragmentInstance(ingredients)).commit();
 
-        } else
-        {
-            getSupportFragmentManager().beginTransaction().replace(R.id.recipe_detail_container
-                    , IngredientsDetailFragment.getIngredientsDetailFragmentInstance(ingredients)).commit();
-        }
-
+        int commitId = (twoPane) ? getSupportFragmentManager().beginTransaction().replace(R.id.detail_recipe_container
+                , IngredientsDetailFragment.getIngredientsDetailFragmentInstance(ingredients)).commit() :
+                getSupportFragmentManager().beginTransaction().replace(R.id.recipe_detail_container
+                        , IngredientsDetailFragment.getIngredientsDetailFragmentInstance(ingredients)).commit();
     }
 }
