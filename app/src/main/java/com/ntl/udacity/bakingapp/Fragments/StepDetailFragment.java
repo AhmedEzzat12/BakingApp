@@ -67,6 +67,7 @@ public class StepDetailFragment extends Fragment
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         setRetainInstance(true);
+        
         super.onCreate(savedInstanceState);
     }
 
