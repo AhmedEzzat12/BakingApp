@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.ntl.udacity.bakingapp.Models.IngredientItem;
 import com.ntl.udacity.bakingapp.R;
@@ -51,6 +52,7 @@ public class IngredientsWidgetService extends IntentService
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, RecipesWidget.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.appwidget_list);
+        Log.d("update widgets service", "invoked");
         RecipesWidget.updateAppWidget(this, appWidgetManager, appWidgetIds, ingredientItems);
     }
 

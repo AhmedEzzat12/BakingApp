@@ -45,13 +45,14 @@ public class RecipeDetailFragment extends Fragment implements CardsAdapter.MOnIt
     public void onAttach(Context context)
     {
         super.onAttach(context);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
-        setRetainInstance(true);
+
+        //setRetainInstance(true);
         super.onCreate(savedInstanceState);
     }
 
@@ -60,7 +61,6 @@ public class RecipeDetailFragment extends Fragment implements CardsAdapter.MOnIt
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
-
         recipe = getActivity().getIntent().getParcelableExtra(MainActivity.RECIPE_KEY);
 
         arrayAdapter = new stepsAdapter(container.getContext(), recipe.getSteps(), this);
@@ -73,6 +73,7 @@ public class RecipeDetailFragment extends Fragment implements CardsAdapter.MOnIt
             public void onClick(View v)
             {
                 anInterface.transform(recipe.getIngredients());
+                Log.d("getIngredients size", String.valueOf(recipe.getIngredients().size()));
             }
         });
 
@@ -81,7 +82,10 @@ public class RecipeDetailFragment extends Fragment implements CardsAdapter.MOnIt
             @Override
             public void onClick(View v)
             {
+
                 IngredientsWidgetService.startActionUpdateIngredients(context, (ArrayList<IngredientItem>) recipe.getIngredients());
+                Log.d("getIngredients size", String.valueOf(recipe.getIngredients().size()));
+
             }
         });
         listView.setAdapter(arrayAdapter);

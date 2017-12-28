@@ -38,10 +38,10 @@ public class RecipDetaileActivity extends AppCompatActivity implements transferD
         recipeDetailFragment.setAnInterface(this);
         if (twoPane)
         {
-            getSupportFragmentManager().beginTransaction().add(R.id.master_recipe_container, recipeDetailFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.master_recipe_container, recipeDetailFragment).commit();
         } else
         {
-            getSupportFragmentManager().beginTransaction().add(R.id.recipe_detail_container, recipeDetailFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.recipe_detail_container, recipeDetailFragment).commit();
         }
 
     }
@@ -53,7 +53,7 @@ public class RecipDetaileActivity extends AppCompatActivity implements transferD
         Step stepObj = (Step) step;
         if (twoPane)
         {
-            Log.d(TAG,"tablet mode");
+            Log.d(TAG, "tablet mode");
             getSupportFragmentManager().beginTransaction().replace(R.id.detail_recipe_container
                     , StepDetailFragment.getStepDetailFragmentInstance(stepObj)).commit();
         } else
@@ -74,8 +74,7 @@ public class RecipDetaileActivity extends AppCompatActivity implements transferD
             getSupportFragmentManager().beginTransaction().replace(R.id.detail_recipe_container
                     , IngredientsDetailFragment.getIngredientsDetailFragmentInstance(ingredients)).commit();
 
-        }
-        else
+        } else
         {
             getSupportFragmentManager().beginTransaction().replace(R.id.recipe_detail_container
                     , IngredientsDetailFragment.getIngredientsDetailFragmentInstance(ingredients)).commit();

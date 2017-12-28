@@ -42,6 +42,7 @@ import java.util.List;
 public class MainFragment extends Fragment implements CardsAdapter.MOnItemListener
 {
     private static final String TAG = MainFragment.class.getSimpleName();
+    private static final String RECIPES_KEY = "recipes";
     private CardsAdapter cardsAdapter;
     private List<Recipe> recipeList;
     private Context context;
@@ -57,7 +58,8 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         setHasOptionsMenu(true);
-
+        if (savedInstanceState != null)
+            recipeList = savedInstanceState.getParcelableArrayList(RECIPES_KEY);
         super.onCreate(savedInstanceState);
     }
 
@@ -66,6 +68,13 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
     {
         super.onAttach(context);
         this.context = context;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState)
+    {
+        outState.putParcelableArrayList(RECIPES_KEY, (ArrayList<Recipe>) recipeList);
+        super.onSaveInstanceState(outState);
     }
 
     @Nullable

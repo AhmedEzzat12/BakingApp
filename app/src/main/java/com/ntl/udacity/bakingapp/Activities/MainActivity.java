@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements transferDataInter
         setContentView(R.layout.activity_main);
         MainFragment mainFragment = new MainFragment();
         mainFragment.setAnInterface(this);
-        getSupportFragmentManager().beginTransaction().add(R.id.main_container,mainFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, mainFragment).commit();
     }
 
     @Override
