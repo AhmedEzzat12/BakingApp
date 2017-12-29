@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
@@ -42,9 +41,9 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
 {
 
 
-    private static final String TAG = StepDetailFragment.class.getSimpleName();
     private static final String PLAYER_POSITION = "player";
     private static final String PLAYER_STATE = "state";
+    private static final String STEP_KEY = "step_key";
     private SimpleExoPlayerView videoview;
     private SimpleExoPlayer simpleExoPlayer;
     private Step step;
@@ -68,18 +67,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState)
-    {
-        if (savedInstanceState != null)
-        {
-            position = savedInstanceState.getLong(PLAYER_POSITION);
-            playerState = savedInstanceState.getInt(PLAYER_STATE);
-
-        }
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onAttach(Context context)
     {
         super.onAttach(context);
@@ -96,29 +83,43 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+        setRetainInstance(true);
+        if (savedInstanceState != null)
+        {
+            position = savedInstanceState.getLong(PLAYER_POSITION);
+            playerState = savedInstanceState.getInt(PLAYER_STATE);
+            step = savedInstanceState.getParcelable(STEP_KEY);
+        }
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE && !getResources().getBoolean(R.bool.isTablet))
         {
             View view = inflater.inflate(R.layout.fragment_step_detail, container, false);
             videoview = view.findViewById(R.id.step_detail_video);
-            videoURL = step.getVideoURL();
+            if (step != null)
+            {
+                videoURL = step.getVideoURL();
+            }
             return view;
         } else
         {
             View view = inflater.inflate(R.layout.fragment_step_detail, container, false);
             videoview = view.findViewById(R.id.step_detail_video);
-            videoURL = step.getVideoURL();
-            TextView instructionTV = view.findViewById(R.id.step_detail_recipe_instruction);
-            ImageView imageView = view.findViewById(R.id.step_thumbnail);
-            try
+            if (step != null)
             {
-                Glide.with(inflater.getContext()).load(step.getThumbnailURL()).into(imageView);
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+                videoURL = step.getVideoURL();
+                TextView instructionTV = view.findViewById(R.id.step_detail_recipe_instruction);
+                ImageView imageView = view.findViewById(R.id.step_thumbnail);
+                try
+                {
+                    Glide.with(inflater.getContext()).load(step.getThumbnailURL()).into(imageView);
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
 
-            instructionTV.setText(step.getDescription());
+                instructionTV.setText(step.getDescription());
+
+            }
 
             return view;
         }
@@ -290,7 +291,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             playerState = simpleExoPlayer.getPlaybackState();
             outState.putLong(PLAYER_POSITION, position);
             outState.putInt(PLAYER_STATE, playerState);
-
+            outState.putParcelable(STEP_KEY, step);
         }
 
 

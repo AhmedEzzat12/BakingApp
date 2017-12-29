@@ -2,7 +2,6 @@ package com.ntl.udacity.bakingapp.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
@@ -44,16 +43,13 @@ import java.util.List;
 public class MainFragment extends Fragment implements CardsAdapter.MOnItemListener
 {
     private static final String TAG = MainFragment.class.getSimpleName();
-    private static final String RECIPES_KEY = "recipes";
     private static final String POSITION_KEY = "position_key";
     private CardsAdapter cardsAdapter;
     private List<Recipe> recipeList;
     private Context context;
     private transferDataInterface anInterface;
     private IdlingResourceTest idlingResourceTest;
-    private Parcelable layoutManagerState;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private int scrollPosition;
     private boolean isTablet;
     private TextView emptyView;
@@ -111,6 +107,7 @@ public class MainFragment extends Fragment implements CardsAdapter.MOnItemListen
         recyclerView = v.findViewById(R.id.main_recyclerview);
         recyclerView.setHasFixedSize(true);
         isTablet = getResources().getBoolean(R.bool.isTablet);
+        RecyclerView.LayoutManager layoutManager;
         if (isTablet)
         {
             layoutManager = new GridLayoutManager(inflater.getContext(), 3);

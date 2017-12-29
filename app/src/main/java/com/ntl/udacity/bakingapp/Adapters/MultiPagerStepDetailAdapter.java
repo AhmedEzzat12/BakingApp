@@ -11,7 +11,6 @@ import com.ntl.udacity.bakingapp.Models.Recipe;
 public class MultiPagerStepDetailAdapter extends FragmentPagerAdapter
 {
     private Recipe recipe;
-
     public MultiPagerStepDetailAdapter(FragmentManager fm)
     {
         super(fm);

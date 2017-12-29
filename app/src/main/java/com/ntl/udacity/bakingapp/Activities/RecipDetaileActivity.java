@@ -23,7 +23,6 @@ import java.util.List;
 public class RecipDetaileActivity extends AppCompatActivity implements transferDataInterface
 {
 
-    public static final String STEP_KEY = "step_key";
     public static final String STEP_POSITION = "step_position";
     private static final String TAG = RecipDetaileActivity.class.getSimpleName();
     private static final String INGREDIENTS_KEY = "ingredients_key";
